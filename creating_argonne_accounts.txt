@@ -1,0 +1,18 @@
+Creating Argonne Accounts 
+Go to https://accounts.mcs.anl.gov/index.php?tpl=request_identity.tpl
+If you already have an ANL “Domain” account authenticate with it on the left panel, if not, fill out the right panel, accept the agreement, and click Continue
+Fill out your personal information, and select the organization you’re affiliated with
+Click next page
+Fill in your username
+Account class is Annual
+Reason for requesting is “Participation in NCI data working group”
+Account sponsor is “Maulik Shukla”
+Set your password
+Check MCS Forward – enter your email address
+Click configure account email
+Click request resources
+Select Request or Remove Group Membership
+Select the “nciftp” group
+Click continue 
+You will need to wait for your account to be approved
+
