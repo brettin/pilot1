@@ -1,0 +1,17 @@
+You will need an argonne account. See creating_argone_accounts.txt
+Recommended FTP Clients
+On OSX – FileZilla https://filezilla-project.org/
+Open file – site manager
+Click New Site
+Host is: nciftp.cels.anl.gov
+Select Encryption: Require explicit FTP over TLS
+Click connect
+
+On Linux – lftp
+Enter lftp session
+set ssl-allow true
+user <username>
+open nciftp.cels.anl.gov
+
+set ssl:verify-certificate no (this is only needed if you receive this message - Fatal error: Certificate verification: Not trusted)
+
