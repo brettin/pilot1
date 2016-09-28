@@ -1,0 +1,36 @@
+{
+    "filters": {
+        "content": [
+            {
+                "content": {
+                    "field": "files.experimental_strategy",
+                    "value": [
+                        "RNA-Seq"
+                    ]
+                },
+                "op": "="
+            },
+            {
+                "content": {
+                    "field": "cases.project.disease_type",
+                    "value": [
+                        "[% disease_type %]"
+                    ]
+                },
+                "op": "="
+            },
+            {
+                "content": {
+                    "field": "files.analysis.workflow_type",
+                    "value": [
+                        "HTSeq - FPKM-UQ"
+                    ]
+                },
+                "op": "="
+            }
+        ],
+        "op": "and"
+    },
+    "return_type": "manifest",
+    "size":"100000"
+}

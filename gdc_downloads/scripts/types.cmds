@@ -1,0 +1,6 @@
+# to create the payload.type files
+
+# to run curl on the payload.type files
+for n in *.json.type.* ; do curl --request POST --header "Content-Type: application/json" --data @$n 'https://gdc-api.nci.nih.gov/files' > $n.manifest ; done
+
+
