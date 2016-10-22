@@ -1,0 +1,9 @@
+mkdir individual_types
+
+pushd individual_types
+
+uniq -c ../y | perl -e 'my $pos=0; while(<>){s/^\s+//; my($off,$f) = split /\s+/; $pos=$pos+$off; print "head -", $pos, " ../X  | tail -", $off, " > X.$f\n";}' > split.X
+
+uniq -c ../y | perl -e 'my $pos=0; while(<>){s/^\s+//; my($off,$f) = split /\s+/; $pos=$pos+$off; print "head -", $pos, " ../y  | tail -", $off, " > y.$f\n";}' > split.y
+
+popd

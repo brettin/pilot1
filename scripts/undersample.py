@@ -1,5 +1,5 @@
 from imblearn.under_sampling import RandomUnderSampler
-
+from imblearn.under_sampling import TomekLinks
 
 def undersample(X_train, y_train, bal_strategy):
 	print 'Shape of X_train: ', X_train.shape

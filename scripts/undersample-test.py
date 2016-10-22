@@ -78,8 +78,5 @@ def baseline_model(opt):
 baseline_model = baseline_model(optimizer)
 baseline_model.fit(X_train, y_onehot, nb_epoch=5, batch_size=32, verbose=1)
 scores = baseline_model.evaluate(X_test, y_test_onehot)
-for item in baseline_model.metric_names:
-	print str(item)
-
-print("%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
+print("%s: %.2f%%" % (baseline_model.metrics_names[1], scores[1]*100))
 
