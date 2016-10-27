@@ -1,0 +1,31 @@
+<h1>A Framework for Constructing Classifiers</h1>
+
+<h2>ToolKit</h2>
+The basic toolkit for working with and cross-validating a <i>ProbDir</i> will have four components
+with the following arguments:
+<ol>
+<li> <b>svc_split_probdir inDir trainDir testDir Frac [seed] --- </b> 
+randomly splits the rows of an <i>(X, y),</i> pair within an input-data ProbDir <i>inDir</i>
+into a "training" ProbDir <i>trainDir</i> that will be used to train and store classifiers,
+and a "test" ProbDir <i>testDir</i> containing withheld data to be classified by the trained classifiers.
+<i>Frac</i> is the decimal fraction of instances from <i>inDir</i> to be withheld in <i>testDir.</i>
+An optional "seed" value to initialize the random-number generator is permitted
+to allow exact replication of a splitting.
+<p>
+<li> <b>svc_train_classifier trainDir classifierType ---</b>
+Uses the <i>(X, y)</i> data within <i>trainDir</i> to train a classifier;
+the result will be "pickled" into subdirectory <i>trainDir/Classifiers/&lt;classifierType&gt;/.</i>
+<p>
+<li> <b>svc_apply_classifier testDir trainDir classifierType --- </b>
+Apply the "pickled" classifier <i>classifierType</i> from <i>trainDir</i>
+to the <i>X</i> data in <i>testDir;</i>
+the resulting "predictions" will be written to the column-vector file
+<b>testDir/Classifiers/&lt;classifierType&gt;/y.out</b>
+<p>
+<li> <b>svc_evaluate_classifier testDir classifierType --- </b>
+Given a processed test-ProbDir <i>testDir,</i> write to STDOUT a human-readable list of mismatches
+between <i>testDir/y</i> and <i>testDir/Classifiers/&lt;classifierType&gt;/y.out,</i>
+as a tab-separated stream of 3-tuples, <b>(row.h[i], y.map[y[i]], y.map[y.out[i]])</b>
+when the corresponding row-header and y-value map files exist (and as raw numberical values otherwise),
+and write to STDERR a set of statistics summarizing how well the classier performed.
+</ol>
