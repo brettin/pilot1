@@ -78,7 +78,6 @@ print 'output_dim: ', output_dim
 # define baseline model
 def baseline_model(opt, output_dim):
 	model = Sequential()
-	# opt = SGD(lr=learn_rate)
 	model.add(Dense(2000, input_dim=input_dim, init='normal', activation='sigmoid'))
 	model.add(Dropout(.10))
 	model.add(Dense(200, init='normal', activation='sigmoid'))
