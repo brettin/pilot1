@@ -1,0 +1,56 @@
+<h1>A Framework for Constructing Classifiers</h1>
+
+<h2>ProbDir:  [problem directory] </h2>
+
+A <b>ProbDir</b> is used to group data relating to a specific
+classification problem.  Each ProbDir contains a matrix <b>X</b>.
+Each row of <i>X</i> corresponds to an entitiy (also called "instance") of the type for which the
+classifier is being built. The entities being classified all have a common type.
+Each entity (i.e., row in <i>X</i>) has a set of <b>attributes</b> (often called "features").
+Each columns of <i>X</i> correspond to a single type of attribute, all rows in <i>X</i> will contain the
+same number of attributes, and the value of an attribute for a specific entity (i.e., the
+value in a cell of <i>X</i>) must be numeric.
+<p>
+This last requirement that the values in <i>X</i> must all be numeric may require creation of maps
+from nonnumeric attribute values to integers.  Each column may, or may not, have an associated
+map. If column <i>i</i> has an associated map, it will be in the file <b>col.map</b>, which will be a file 
+containing 3-tuples:
+<ol>
+<li>the index of the column
+<li>an integer to which a specific value is to be mapped, and
+<li>the normal value of the attribute being mapped to the integer.
+</ol>
+<p>
+In cases where "ground truth" or some other prior labelings of the entities in <i>X</i> are available,
+we may also have a column-vector of labelings <b>y</b>;
+again these lableings must be numeric-valued (usually integers).
+
+<p>
+Finally, for human readability, we allow three more optional files:
+<ol>
+<li><b>row.h --- </b>
+A 3-column tab-seperated file listing the row-index-number, "short," and "full" headers or labels
+for the rows of <i>X.</i> It must have the same number of rows as <i>X.</i>
+The row-index, while redundant, simplifies debugging by removing the need to subtract in one's head
+to deal with "zero-based indexing."
+The "short" label is mandatory. The "long" label is optional.
+<p>
+<li><b>col.h --- </b>
+A 3-column tab-separated file listing the column-index, "short," and "full" headers or labels
+for the columns of <i>X.</i> It must have the same number of columns as <i>X.</i>
+The column-index, while redundant, simplifies debugging by removing the need to subtract in one's head
+to deal with "zero-based indexing."
+The "short" label is mandatory. The "long" label is optional.
+<p>
+<li><b>y.map --- </b>
+Similarly to the attribute-mapping file <i>col.map,</i>
+we allow a value-mapping file <i>y.map</i>; it is a list of 2-tuples that map
+from the allowed entity-labels in the range of <i>y</i> to "human-readable" labels
+for the entities in <i>y.</i>
+</ol>
+
+<p>
+After training a classifier using the given <i>(X, y)</i> pair in a <i>ProbDir/,</i>
+the trained classifiers will be stored by "pickling" them into a subdirectory of <i>ProbDir/</i>
+named <b>Classifiers/&lt;classifierName&gt;/,</b> --- e.g. <i>ProbDir/Classifiers/MultinomialNB/</i>
+or <i>ProbDir/Classifiers/LogisticRegression/.</i>
