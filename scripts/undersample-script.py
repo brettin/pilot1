@@ -15,7 +15,7 @@ X_train = np.loadtxt(open(X_fname, "rb"), dtype=float, delimiter='\t')
 y_train = np.loadtxt(open(y_fname, "rb"), dtype=int, delimiter='\t')
 
 print 'Shape of X_train: ', X_train.shape
-print 'Shape of y_Train: ', y_train.shape
+print 'Shape of y_train: ', y_train.shape
 
 X_balanced, y_balanced = us.undersample(X_train, y_train, bal_strategy)
 
