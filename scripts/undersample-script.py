@@ -22,5 +22,5 @@ X_balanced, y_balanced = us.undersample(X_train, y_train, bal_strategy)
 X_balfname = X_fname + "_bal"
 y_balfname = y_fname + "_bal"
 
-np.savetxt( X_balfname, X_balanced, delimiter='\t')
-np.savetxt( y_balfname, y_balanced, delimiter='\t')
+np.savetxt( X_balfname, X_balanced, fmt="%10.2f", delimiter='\t')
+np.savetxt( y_balfname, y_balanced, fmt="%s", delimiter='\t')
