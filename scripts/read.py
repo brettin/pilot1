@@ -20,9 +20,5 @@ output_dim = np.unique(y_train).shape[0]
 print 'input_dim: ', input_dim
 print 'output_dim: ', output_dim
 
-# this is not needed
-# X = np.array(X_train, dtype=float, copy=False, order='C')
-# y = np.array(y_train, dtype=float, copy=False, order='C')
-# 
-# print X.shape
-# print y.shape
+np.savetxt('X.save', X_train, delimiter="\t", fmt='%s')
+np.savetxt('y.save', y_train, delimiter="\t", fmt='%s')
