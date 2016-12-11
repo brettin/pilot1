@@ -6,21 +6,62 @@ from keras.optimizers import Adam
 from keras.optimizers import Adamax
 from keras.optimizers import Nadam
 
-def OptBuilderlr=0.01, momentum=0.0, decay=0.0, nesterov=Falses)
+from optimizer_defaults import defaults_for
+
+def OptBuilder(optimizer='SGD',**kwargs):
+
+	print "createing optimizer: ", optimizer
 	if (optimizer == "SGD" ):
-		opt = SGD(lr=lr, momentum=momentum, decay=decay, nesterov=nesterov);
+		vals = _arg_builder(optimizer, kwargs)
+		print "preset defaults: ", defaults_for[optimizer]
+		print "using params:     ", vals
+		opt = SGD(**vals);
+	
+	if (optimizer == "RMSprop"):
+		vals = _arg_builder(optimizer, kwargs)
+		print "preset defaults: ", defaults_for[optimizer]
+		print "using params:     ", vals
+		opt = RMSprop(**vals)
+	
+	if (optimizer == "Adagrad"):
+		vals = _arg_builder(optimizer, kwargs)
+		print "preset defaults: ", defaults_for[optimizer]
+		print "using params:     ", vals
+		opt = Adagrad(**vals)
 
-if (optimizer == "RMSprop" or optimizer == "ALL") ):
+	if (optimizer == "Adadelta"):
+		vals = _arg_builder(optimizer, kwargs)
+		print "preset defaults: ", defaults_for[optimizer]
+		print "using params:     ", vals
+		opt = Adadelta(**vals)
 
-if (optimizer == "Adagrad" or optimizer == "ALL") ):
+	if (optimizer == "Adam"):
+		vals = _arg_builder(optimizer, kwargs)
+		print "preset defaults: ", defaults_for[optimizer]
+		print "using params:     ", vals
+		opt = Adam(**vals)
 
-if (optimizer == "Adadelta" or optimizer == "ALL") ):
+	if (optimizer == "Adamax"):
+		vals = _arg_builder(optimizer, kwargs)
+		print "preset defaults: ", defaults_for[optimizer]
+		print "using params:     ", vals
+		opt = Adamax(**vals)
+	
+	if (optimizer == "Nadam"):
+		vals = _arg_builder(optimizer, kwargs)
+		print "preset defaults: ", defaults_for[optimizer]
+		print "using params:     ", vals
+		opt = Nadam(**vals)
+	
+	print "Using optimizer: ", opt
+	return opt
 
-if (optimizer == "Adam" or optimizer == "ALL") ):
 
-if (optimizer == "Adamax" or optimizer == "ALL") ):
 
-if (optimizer == "Nadam" or optimizer == "ALL") ):
-
-	print "Using optimizer: ", opt;
-
+def _arg_builder(optimizer, kwargs):
+	vals = defaults_for[optimizer].copy()
+	print 'using vals as defaults: ', vals
+	for k, v in kwargs.iteritems():
+		if (k in vals):
+			vals[k]=v			
+	return vals
