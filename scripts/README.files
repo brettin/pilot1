@@ -1,0 +1,38 @@
+# A program that will write out new X and y after applying an oversampling technique.
+	oversample-script.py
+
+# A program that will write out new X and y after applying an undersampling technique.
+	undersample-script.py
+
+# A program that takes as input a number of hyper-parameters applying to a fixed net arch.
+	paramtest.py
+
+# A library that wraps oversampling methods.
+	oversample.py
+
+# A library that wraps undersampling methods.
+	undersample.py
+
+# A library that wraps optimizer createion.
+	optimize.py
+
+# A script that takes in alot of different parameters.
+	param-sweep.py
+
+
+
+undersample-test.py     This is a script that will train and cross
+validate a model using undersampling. It does cross-validation on 20% of
+the original data.
+
+oversample-test.py      This is a script that will train and cross
+validate a model using oversampling. It does cross-validation on 20% of
+the original data.
+
+param-sweep.py  This is a script that will take as input
+        balance strategy
+        learning rate
+        optimizer and optimizer paramters
+        undersampling method
+        oversampling method
+        dropout rate
