@@ -67,9 +67,6 @@ y_test_encoded = encoder.transform(y_test)
 y_test_onehot = np_utils.to_categorical(y_test_encoded)
 
 
-# set up the optimizer TODO: look into sweeping over optimizers
-optimizer = SGD(lr=learn_rate)
-
 # get the input diminsion for the first layer and output dim for last layer
 input_dim = X_train.shape[1]
 output_dim = np.unique(y_train).shape[0]
@@ -78,7 +75,8 @@ print 'input_dim: ', input_dim
 print 'output_dim: ', output_dim
 
 # define baseline model
-def baseline_model(opt=SGD(lr=learn_rate), output_dim=0, input_dim=0, dropout=.1):
+def baseline_model(optimizer=SGD, learn_rate=.01, output_dim=0, input_dim=0, dropout=.1):
+	opt = SGD(lr=learn_rate)
 	print "Using ", learn_rate, " as the learning rate"
 	print "Using ", dropout, " as the dropout rate"
 
@@ -94,24 +92,23 @@ def baseline_model(opt=SGD(lr=learn_rate), output_dim=0, input_dim=0, dropout=.1
 	return model
 
 
-baseline_model = baseline_model(optimizer, output_dim, input_dim, dropout)
+baseline_model = baseline_model(SGD, learn_rate, output_dim, input_dim, dropout)
 baseline_model.fit(X_train, y_onehot, nb_epoch=nb_epoch, batch_size=32, verbose=1)
 scores = baseline_model.evaluate(X_test, y_test_onehot)
 print("%s: %.2f%%" % (baseline_model.metrics_names[1], scores[1]*100))
 
-
 # define the model evaluation procedure to be k-Fold Cross Validation
-# estimator = KerasClassifier(build_fn=baseline_model, opt=optimizer, output_dim=output_dim, nb_epoch=nb_epoch, batch_size=32, verbose=0)
+estimator = KerasClassifier(build_fn=baseline_model, output_dim=output_dim, nb_epoch=nb_epoch, batch_size=32, verbose=0)
 
 # evaluate our model (estimator) on our dataset using a 10-fold cross validation
 # set the number of folds to be 10 and to shuffle the data before partitioning it.
 
 # fix random seed for reproducibility
-# seed = 7
-# np.random.seed(seed)
+seed = 7
+np.random.seed(seed)
 
 
-# kfold = KFold(n=len(X_train), n_folds=2, shuffle=True, random_state=seed)
-# results = cross_val_score(estimator, X_train, y_onehot, cv=kfold)
-# print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.sctd()*100))
+kfold = KFold(n=len(X_train), n_folds=2, shuffle=True, random_state=seed)
+results = cross_val_score(estimator, X_train, y_onehot, cv=kfold)
+print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.sctd()*100))
 
