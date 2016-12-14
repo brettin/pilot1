@@ -8,7 +8,7 @@ from keras.optimizers import Nadam
 
 from optimizer_defaults import defaults_for
 
-def OptBuilder(optimizer='SGD',**kwargs):
+def opt_builder(optimizer='SGD',**kwargs):
 
 	print "createing optimizer: ", optimizer
 	if (optimizer == "SGD" ):
