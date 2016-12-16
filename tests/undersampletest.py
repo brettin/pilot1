@@ -15,17 +15,11 @@ from sklearn.cross_validation import cross_val_score
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 
-# muck with command line args 
-if (len(sys.argv) < 4):
-	print 'requires arg1=X_fname and arg2=Y_fname and bal_strategy lr_rate'
-	sys.exit(1)
-
-X_fname      = sys.argv[1]
-y_fname      = sys.argv[2]
-bal_strategy = sys.argv[3]
-learn_rate   = sys.argv[4]
-dropout      = sys.argv[5]
-# optimizer   = sys.argv[6]
+X_fname      = '/vagrant/pilot1/problem_dirs/ByType.2/X.little.unb'
+y_fname      = '/vagrant/pilot1/problem_dirs/ByType.2/y.little.unb'
+bal_strategy = 'RANDOM' 
+learn_rate   = 0.01
+dropout      = 0.1
 nb_epoch=50
 
 
@@ -96,19 +90,3 @@ baseline_model = baseline_model(SGD, learn_rate, output_dim, input_dim, dropout)
 baseline_model.fit(X_train, y_onehot, nb_epoch=nb_epoch, batch_size=32, verbose=1)
 scores = baseline_model.evaluate(X_test, y_test_onehot)
 print("%s: %.2f%%" % (baseline_model.metrics_names[1], scores[1]*100))
-
-# define the model evaluation procedure to be k-Fold Cross Validation
-estimator = KerasClassifier(build_fn=baseline_model, output_dim=output_dim, nb_epoch=nb_epoch, batch_size=32, verbose=0)
-
-# evaluate our model (estimator) on our dataset using a 10-fold cross validation
-# set the number of folds to be 10 and to shuffle the data before partitioning it.
-
-# fix random seed for reproducibility
-seed = 7
-np.random.seed(seed)
-
-
-kfold = KFold(n=len(X_train), n_folds=2, shuffle=True, random_state=seed)
-results = cross_val_score(estimator, X_train, y_onehot, cv=kfold)
-print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.sctd()*100))
-
