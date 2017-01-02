@@ -8,17 +8,17 @@ if (len(sys.argv) != 3):
 X_fname = sys.argv[1] 
 y_fname = sys.argv[2]
 
-X_train = np.loadtxt(open(X_fname, "rb"), dtype=float, delimiter='\t')
-y_train = np.loadtxt(open(y_fname, "rb"), dtype=int, delimiter='\t')
+X = np.loadtxt(open(X_fname, "rb"), dtype=float, delimiter='\t')
+y = np.loadtxt(open(y_fname, "rb"), dtype=int, delimiter='\t')
 
-print X_train.shape
-print y_train.shape
+print X.shape
+print y.shape
 
-input_dim = X_train.shape[1]
-output_dim = np.unique(y_train).shape[0]
+input_dim = X.shape[1]
+output_dim = np.unique(y).shape[0]
 
 print 'input_dim: ', input_dim
 print 'output_dim: ', output_dim
 
-np.savetxt('X.save', X_train, delimiter="\t", fmt='%s')
-np.savetxt('y.save', y_train, delimiter="\t", fmt='%s')
+np.savetxt('X.save', X, delimiter="\t", fmt='%s')
+np.savetxt('y.save', y, delimiter="\t", fmt='%s')
