@@ -17,7 +17,7 @@ def undersample(X_train, y_train, bal_strategy):
 	elif(bal_strategy == "TOMEK" or bal_strategy == "ALL"):
 		# Apply Tomek Links cleaning
 		tl = TomekLinks()
-		X_resampled, y_resampled = tl.fit_sample(X, y)
+		X_resampled, y_resampled = tl.fit_sample(X_train, y_train)
 
 		print 'Shape of X_resampled: ', X_resampled.shape
 		print 'Shape of y_resampled: ', y_resampled.shape
