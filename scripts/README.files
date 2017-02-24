@@ -1,0 +1,29 @@
+# A program that will write out new X and y after applying an oversampling technique.
+	scripts/oversample-script.py
+
+# A program that will write out new X and y after applying an undersampling technique.
+	scripts/undersample-script.py
+
+# A program that will do a binary classification
+	scripts/sequential-binary-class.py
+
+# A program that will do a multi-class classification
+	sequential-categorical-class.py
+
+# A program that takes as input a number of hyper-parameters applying to a fixed net arch.
+	paramtest.py
+
+# A library that wraps oversampling methods.
+	lib/oversample.py
+
+# A library that wraps undersampling methods.
+	lib/undersample.py
+
+# A library that wraps optimizer createion.
+	lib/optimizer.py
+
+# A script that takes in alot of different parameters.
+	param-sweep.py
+
+parameter-test.py
+run.sh
