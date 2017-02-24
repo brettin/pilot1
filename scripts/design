@@ -8,5 +8,7 @@
 #
 # We want to loop over mulitple learning rates to see how they perform
 #
-
+# We want to save the balanced input files fo the overbalanced and underbalanced sets can be combined for a final run.
+#
+# We want to save the models
 
